@@ -4,11 +4,12 @@
   width: 100vw;
   justify-content: center;
   align-items: center;
+  background-color: lightgray;
 }
 
 .message {
   color: darkred;
   font-size: 36px;
-  background-color: lightgreen;
+  background-color: white;
   padding: 15px;
 }

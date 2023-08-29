@@ -4,19 +4,15 @@ name: Trigger auto deployment for flask-app
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
-    paths:
-    - '//**'
-    - '.github/workflows/flask-app-AutoDeployTrigger-f4002ecc-f2bc-4485-a341-9b9722de2a71.yml'
+    branches: [main]
 
-  # Allow mannually trigger 
-  workflow_dispatch:      
+  # Allow mannually trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
 
     steps:
@@ -33,7 +29,7 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v1
         with:
-          appSourcePath: ${{ github.workspace }} 
+          appSourcePath: ${{ github.workspace }}
           registryUrl: prebenscontainerregistry.azurecr.io
           registryUsername: ${{ secrets.FLASKAPP_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.FLASKAPP_REGISTRY_PASSWORD }}
@@ -41,5 +37,3 @@ jobs:
           resourceGroup: my-resource-group
           imageToBuild: prebenscontainerregistry.azurecr.io/flask-app:${{ github.sha }}
           dockerfilePath: Dockerfile
-
-

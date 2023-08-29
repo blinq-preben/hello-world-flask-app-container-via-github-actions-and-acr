@@ -20,7 +20,7 @@ az acr login --name <registry-name>
 
 ##### 4. Build docker image through the Azure CLI
 ```bash
-az acr build --image <image-name>:<tag> --registry <acr-name> --platform <linux | windows> <repository-name>.git
+az acr build --image <image-name>:<tag> --registry <acr-name> --platform <linux | windows> https://github.<repository-name>.git
 ```
 
 ##### Optional: Run the image to see that it works as intended
